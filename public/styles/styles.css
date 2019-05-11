@@ -1,3 +1,18 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: url("../images/nightsky.jpg") no-repeat;
+}
+
+.title {
+  color:white;
+  font-size: 80px !important;
+}
+
+.description {
+  color:white;
+  font-size: 30px !important;
+}
