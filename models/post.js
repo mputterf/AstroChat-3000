@@ -1,8 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Post = sequelize.define("Post", {
 
-        body: {
-            type: DataTypes.TEXT,
+        textInput: {
+            type: DataTypes.TEXT
+        },
+        gif: {
+            type: DataTypes.BLOB('long')
 
         }
     });
