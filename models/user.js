@@ -10,6 +10,11 @@ module.exports = function (sequelize, DataTypes) {
         User.hasMany(models.Post, {
             onDelete: "cascade"
         });
+
+        // Associate User with Password
+        User.hasOne(models.Password, {
+            onDelete: "cascade"
+        })
     };
 
     return User;
