@@ -1,99 +1,67 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(document).ready(function () {
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+    // console.log("js loaded");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+    // At first no user will be signed in, so their ID will be null
+    var userID = null;
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+    var userPost = $("#message");
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+    // sign in message that will be in place of the chat box form until the user signs in
+    var signInMessage = $("<div>");
+    signInMessage.attr("id", "signInMessage");
+    signInMessage.html("<p>Please sign in before sending any messages</p>");
+    $("#sendMessageDiv").append(signInMessage);
 
-      $li.append($button);
+    // When the user logs in, fire the function to get their User ID
+    $("#sign-in-button").on("click", getUser);
 
-      return $li;
-    });
+    // Get the user to sign in first
+    if (userID === null) {
+        $("#sendMessage").hide();
+    }
 
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
+    // When the user clicks the send message, fire the function to post the message to the db
+    $("#sumbit-button").on("click", postMessage);
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+    function getUser(event) {
+        event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+        // get the name the user entered
+        var name = $("#username").val().trim().toLowerCase();
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+        // We'll get the password too
+        // We'll compare the password to what's in the database. If it's a match, get the user's ID
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
+        // We'll look for the user in the db and save their id (will be useful for posting messages to the db)
+        $.get("/api/users/" + name, function (data) {
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+            if (data) {
+                userID = data.id;
+                // console.log("userID", userID);
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+                // Remove the sign in message and show the chatbox
+                $("#signInMessage").remove();
+                $("#sendMessage").show();
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
+                // Since the user is logged in now, we'll replace the login form with a welcome message
+                $("#join").html("<p>Welcome " + data.name + "!</p>");
+            }
+            // else alert user not found
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+        });
+    }
+
+    // Handles sending messages to the db
+    function postMessage(event) {
+        event.preventDefault();
+
+        var message = {
+            textInput: userPost.val().trim(),
+            UserID: userID
+        };
+
+        console.log(message);
+    }
+
+});
