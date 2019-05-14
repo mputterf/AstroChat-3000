@@ -7,6 +7,20 @@ body {
   background: url("../images/nightsky.jpg") no-repeat;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+   background: ghostwhite ;
+   padding: 8px;
+}
+
+li:nth-child(odd) {
+   background: rgb(215, 233, 240)
+}
+
 .title {
   color:white;
   font-size: 80px !important;
