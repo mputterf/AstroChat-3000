@@ -27,13 +27,10 @@
                     <div class="card-header">Recent Messages</div>
                     <div class="card-body">
                       <ul id="messageList">
-                          <li>A message would go here. With user's name and timestamp. 10:10am 4/10/19 -UserName</li>
-                          <li>Dinner at Sara's place sounds great, Bob. 10:10am 4/10/19 -UserName</li>
-                          <li>Oh wow another message! 10:10am 4/10/19 -UserName</li>
-                          <li>We can remove this dummy list when everything is set up. 10:10am 4/10/19 -UserName</li>
-                          {{#each messages}}
+                         
+                          {{#each posts}}
                           <li>
-                            <p>{{this.message}} {{this.date}} {{this.username}}</p>
+                            <p>{{this.textInput}} {{this.createdAt}} {{this.UserId}}</p>
                           </li>
                           {{/each}}
 
@@ -58,7 +55,7 @@
                     <div class="card-body p-0">
                       <ul id="onlineUsers" class="list-group list-group-flush">
                         {{#each users}}
-                          <li>{{name}}</li>
+                          <li>{{this.name}}</li>
                         {{/each}}
                       </ul>
                     </div>

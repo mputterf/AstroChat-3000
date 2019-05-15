@@ -1,4 +1,5 @@
-var path = require("path");
+
+var db = require("../models");
 
 module.exports = function (app) {
 
@@ -15,7 +16,13 @@ module.exports = function (app) {
     });
 
     app.get("/chat", function (req, res) {
-        res.render("chat");
+        
+            db.Post.findAll({}).then(function (data) {
+                res.render("chat", {posts: data});
+            })
+        
+        
+
     });
 
     app.get("*", function (req, res) {
