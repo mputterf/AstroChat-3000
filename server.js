@@ -7,13 +7,9 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-const http = require("http").Server(app);
-const io = require("socket.io");
-const socket = io(http);
+var server = require("http").createServer(app);
+var io = require("socket.io")(server);
 
-socket.on("connection", (socket) => {
-  console.log("user connected");
-});
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -45,12 +41,32 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
-  http.listen(PORT, function () {
+  server.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );
+  });
+});
+
+// socket.io
+// When a user connects to the server (chatroom)
+io.on('connection', function (client) {
+  console.log('Client connected...');
+
+  // When a user disconnects
+  client.on("disconnect", function () {
+    console.log("Client disconnected...")
+  });
+
+  // When a user sends a chat message, it will come into the server
+  client.on('chat message', function (msg) {
+    // console.log('message: ' + msg);
+
+    // We'll send the chat message to every user
+    io.emit('chat message', msg);
+
   });
 });
 
