@@ -29,6 +29,7 @@ $(document).ready(function () {
 
                 $.post("/api/users/passwords/" + userID, comparePasswords, function (data) {
                     console.log(data);
+
                 });
             }
             // else alert user not found

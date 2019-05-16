@@ -1,6 +1,7 @@
 var db = require("../models");
 
 module.exports = function (app) {
+    // For adding passwords to the db
     app.post("/api/users/passwords", function (req, res) {
         db.Password.create(req.body).then(function (data) {
 
@@ -23,6 +24,7 @@ module.exports = function (app) {
         });
     });
 
+    // for signing in
     app.post("/api/users/passwords/:id", function (req, res) {
         db.Password.findOne({
             where: {
@@ -35,7 +37,8 @@ module.exports = function (app) {
             // console.log("from front end", req.body.enteredPasswd);
             // console.log("from db", data.passwd);
             if (req.body.enteredPasswd == data.passwd) {
-                res.json("Match");
+                res.json(data.UserId);
+                res.render("chat", { user: data.UserId });
             } else {
                 res.json("Failed");
             }
