@@ -38,7 +38,7 @@ module.exports = function (app) {
             // console.log("from db", data.passwd);
             if (req.body.enteredPasswd == data.passwd) {
                 res.json(data.UserId);
-                res.render("chat", { user: data.UserId });
+                // res.render("chat", { user: data.UserId });
             } else {
                 res.json("Failed");
             }

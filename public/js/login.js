@@ -30,6 +30,9 @@ $(document).ready(function () {
                 $.post("/api/users/passwords/" + userID, comparePasswords, function (data) {
                     console.log(data);
 
+                    if (data) {
+                        window.location.href = "/chat";
+                    }
                 });
             }
             // else alert user not found
