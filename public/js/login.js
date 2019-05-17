@@ -28,6 +28,7 @@ $(document).ready(function () {
                     window.location.href = "/chat?userid=" + userID;
                     // window.location.href = "/chat";
                 } else {
+                    // if user enters wrong password
                     $("#username").val("");
                     $("#password").val("");
                     $("#errorDiv").text("Incorrect Password");
@@ -45,11 +46,11 @@ $(document).ready(function () {
                 //     }
                 // });
             } else {
+                // else alert user not found
                 $("#username").val("");
                 $("#password").val("");
                 $("#errorDiv").text("No username found");
             }
-            // else alert user not found
 
         });
     }

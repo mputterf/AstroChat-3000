@@ -2,19 +2,19 @@
 
 
   <div class="container">
-      <!-- * TITLE AREA * -->
-      <div class="row text-center">
-          <div class="col-md-12 text-center ">
-            <h1 class="title">AstroChat 3000</h1> 
-            <p class="description">Get ready for the chat of your life.</p>
-          </div>
-         
+    <!-- * TITLE AREA * -->
+    <div class="row text-center">
+      <div class="col-md-12 text-center ">
+        <h1 class="title">AstroChat 3000</h1>
+        <p class="description">Get ready for the chat of your life.</p>
       </div>
 
-<!-- * APP AREA * -->
+    </div>
+
+    <!-- * APP AREA * -->
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card" >
+        <div class="card">
           <div class="card-body">
             <!-- * REGISTER FORM * -->
             <div id="register_form">
@@ -22,18 +22,21 @@
               <form method="post" id="username-form">
                 <div class="form-group">
                   <div class='input-group'>
-                    <input type='text' name='username' class="form-control" placeholder="Enter your username"></br>
-                    <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                    <input id="username" type='text' name='username' class="form-control"
+                      placeholder="Enter your username"></br>
+                    <input id="password" type="password" name="password" class="form-control"
+                      placeholder="Enter your password">
                     <div class='input-group-append'>
-                      <button class='btn btn-primary'>Sign Up!</button>
+                      <button id="register-button" class='btn btn-primary'>Sign Up!</button>
                     </div>
                   </div>
                 </div>
               </form>
+              <div id="errorDiv"></div>
               <p>Already registered? Login <a href="/login">here</a>.</p>
             </div>
-           
-        
+
+
           </div>
         </div>
       </div>
@@ -47,9 +50,9 @@
 
   </div>
 
-  
-  
+
+
 </body>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/register.js"></script>
