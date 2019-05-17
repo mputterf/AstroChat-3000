@@ -1,7 +1,8 @@
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         // Giving the User model a name of type STRING
-        name: DataTypes.STRING
+        name: DataTypes.STRING,
+        passwd: DataTypes.STRING
     });
 
     User.associate = function (models) {
@@ -12,9 +13,9 @@ module.exports = function (sequelize, DataTypes) {
         });
 
         // Associate User with Password
-        User.hasOne(models.Password, {
-            onDelete: "cascade"
-        })
+        // User.hasOne(models.Password, {
+        //     onDelete: "cascade"
+        // })
     };
 
     return User;

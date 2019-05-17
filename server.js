@@ -30,7 +30,6 @@ app.set("view engine", "handlebars");
 require("./routes/post-api-routes")(app);
 require("./routes/user-api-routes")(app);
 require("./routes/html-routes")(app);
-require("./routes/password-route")(app);
 
 var syncOptions = { force: false };
 
