@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // var userID = null;
+    var userID = null;
 
     // When the user logs in, fire the function to get their User ID
     $("#sign-in-button").on("click", getUser);
@@ -21,19 +21,25 @@ $(document).ready(function () {
 
             if (data) {
                 userID = data.id;
+                userPass = data.passwd;
                 console.log("userID", userID);
 
-                var comparePasswords = {
-                    enteredPasswd: password
-                };
+                if (userPass === password) {
+                    window.location.href = "/chat?userid=" + userID;
+                    // window.location.href = "/chat";
+                }
 
-                $.post("/api/users/passwords/" + userID, comparePasswords, function (data) {
-                    console.log(data);
+                // var comparePasswords = {
+                //     enteredPasswd: password
+                // };
 
-                    if (data) {
-                        window.location.href = "/chat";
-                    }
-                });
+                // $.post("/api/users/passwords/" + userID, comparePasswords, function (data) {
+                //     console.log(data);
+
+                //     if (data) {
+                //         window.location.href = "/chat";
+                //     }
+                // });
             }
             // else alert user not found
 
