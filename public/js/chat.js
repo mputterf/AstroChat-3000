@@ -31,6 +31,6 @@ $(function () {
 
     // When we get a message from the server, append it to the chatbox
     socket.on('chat message', function (msg) {
-        $('#messageList').append($('<li>').text(msg));
+        $('#messageList').append($('<li>').html(msg));
     });
 });
