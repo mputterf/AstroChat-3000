@@ -1,5 +1,6 @@
 
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function (app) {
 
@@ -16,12 +17,22 @@ module.exports = function (app) {
     });
 
     app.get("/chat", function (req, res) {
-        
-            db.Post.findAll({}).then(function (data) {
-                res.render("chat", {posts: data});
-            })
-        
-        
+
+        db.Post.findAll({ include: [db.User] }).then(function (data) {
+
+            // console.log(data[0].dataValues)
+
+
+            for (var i = 0; i < data.length; i++) {
+                data[i].dataValues.createdAt = moment(data[i].dataValues.createdAt).format('MMMM Do YYYY, h:mm a');
+
+            }
+
+            console.log(data)
+            res.render("chat", { posts: data });
+        })
+
+
 
     });
 
