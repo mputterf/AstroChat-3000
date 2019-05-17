@@ -27,6 +27,10 @@ $(document).ready(function () {
                 if (userPass === password) {
                     window.location.href = "/chat?userid=" + userID;
                     // window.location.href = "/chat";
+                } else {
+                    $("#username").val("");
+                    $("#password").val("");
+                    $("#errorDiv").text("Incorrect Password");
                 }
 
                 // var comparePasswords = {
@@ -40,6 +44,10 @@ $(document).ready(function () {
                 //         window.location.href = "/chat";
                 //     }
                 // });
+            } else {
+                $("#username").val("");
+                $("#password").val("");
+                $("#errorDiv").text("No username found");
             }
             // else alert user not found
 
