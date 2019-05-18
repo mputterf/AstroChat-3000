@@ -26,8 +26,16 @@ $(document).ready(function () {
     // socket.on("disconnect", function (newUser) {
     //     $("#onlineUsers").html(newUser);
     // })
+    // var timeZone = moment.tz.setDefault(moment.tz.guess());
+    // var timeZone = moment.tz.guess();
+    // var timeZone = new Date().getTimezoneOffset();
+
+    // console.log(timeZone);
+    // console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+
     $(".message-time").html(function (index, value) {
-        return moment(value, 'ddd MMMM Do YYYY, h:mm a').tz(moment.tz.guess()).format('ddd MMMM Do YYYY, h:mm a');
+        return moment(value, 'ddd MMMM Do YYYY, h:mm a').tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('ddd MMMM Do YYYY, h:mm a');
     })
 
     $('form').submit(function (e) {
