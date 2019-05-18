@@ -78,17 +78,17 @@ $(document).ready(function () {
 
 
     //Populates the Users Online area with a list of users
-    $.get("/api/users", function (data) {
+    // $.get("/api/users", function (data) {
 
-        var userList =  document.getElementById("sidebar");
-        for (i = 0; i < data.length; i++) {
+    //     var userList =  document.getElementById("sidebar");
+    //     for (i = 0; i < data.length; i++) {
            
-            var userListItem = document.createElement("li");
-            userListItem.textContent = data[i].name;
-            userList.appendChild(userListItem);            
+    //         var userListItem = document.createElement("li");
+    //         userListItem.textContent = data[i].name;
+    //         userList.appendChild(userListItem);            
     
-        };
-    });
+    //     };
+    // });
 
 });
 
