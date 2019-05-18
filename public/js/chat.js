@@ -13,11 +13,18 @@ $(document).ready(function () {
             if (userID == data[i].id) {
                 // console.log(data[i].name)
                 userName = data[i].name;
+                socket.emit("newUser", userName);
             }
-
-        }
-        ;
+        };
     });
+
+    socket.on("newUser", function (newUser) {
+        $("#onlineUsers").html(newUser);
+    });
+
+    // socket.on("disconnect", function (newUser) {
+    //     $("#onlineUsers").html(newUser);
+    // })
 
     $('form').submit(function (e) {
         var userID = parseInt(getUrlParameter("userid"));
