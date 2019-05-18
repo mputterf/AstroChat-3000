@@ -27,16 +27,18 @@
                     <div class="card-header">Recent Messages</div>
                     <div class="card-body">
                       <div id="messageWindow">
-                      <ul id="messageList">
+                        <ul id="messageList">
 
-                        {{#each posts}}
-                        
-                        <li>
-                          <p>{{this.textInput}} <br><span class="message_info"> {{this.createdAt}} - {{this.User.name}} </span></p>
-                        </li>
-                        {{/each}}
+                          {{#each posts}}
 
-                      </ul>
+                          <li>
+                            {{this.textInput}} <br><span class="message_info"> <span
+                                class="message-time">{{this.createdAt}}</span> -
+                              {{this.User.name}} </span>
+                          </li>
+                          {{/each}}
+
+                        </ul>
                       </div>
                       <hr>
                       <form id="sendMessage" method="post">
@@ -66,7 +68,8 @@
               </div>
             </div>
           </div>
-        </div><p class="logoutButton"><a style="color: white;" href="/"> (logout) </a> </p>
+        </div>
+        <p class="logoutButton"><a style="color: white;" href="/"> (logout) </a> </p>
       </div>
     </div>
 
@@ -84,4 +87,7 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.25/moment-timezone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.25/moment-timezone-with-data.js"></script>
 <script src="/js/chat.js"></script>

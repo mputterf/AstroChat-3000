@@ -26,7 +26,17 @@ $(document).ready(function () {
     // socket.on("disconnect", function (newUser) {
     //     $("#onlineUsers").html(newUser);
     // })
+    // var timeZone = moment.tz.setDefault(moment.tz.guess());
+    // var timeZone = moment.tz.guess();
+    // var timeZone = new Date().getTimezoneOffset();
 
+    // console.log(timeZone);
+    // console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+
+    $(".message-time").html(function (index, value) {
+        return moment(value, 'ddd MMMM Do YYYY').tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('ddd MMMM Do YYYY');
+    })
 
     $('form').submit(function (e) {
         var userID = parseInt(getUrlParameter("userid"));
@@ -55,16 +65,14 @@ $(document).ready(function () {
 
         // clear message box after we send everything
         $('#message-box').val('');
-        
+
         return false;
     });
 
     // When we get a message from the server, append it to the chatbox
     socket.on('chat message', function (msg) {
-        $('#messageList').append($('<li>').html(msg + "<br>" + userName));
+        $('#messageList').append($('<li>').html(msg + "<br> <span class='message_info'>" + moment().format('ddd MMMM Do YYYY, h:mm a') + " - " + userName + "</span>"));
     });
-
-
 
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -87,11 +95,11 @@ $(document).ready(function () {
 
     //     var userList =  document.getElementById("sidebar");
     //     for (i = 0; i < data.length; i++) {
-           
+
     //         var userListItem = document.createElement("li");
     //         userListItem.textContent = data[i].name;
     //         userList.appendChild(userListItem);            
-    
+
     //     };
     // });
 

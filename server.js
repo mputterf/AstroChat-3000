@@ -1,7 +1,6 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-var moment = require("moment");
 
 var db = require("./models");
 
@@ -82,7 +81,7 @@ io.on('connection', function (client) {
     // console.log('message: ' + msg);
 
     // We'll send the chat message to every user
-    io.emit('chat message', msg + "<br>" + moment().format('ddd MMMM Do YYYY, h:mm a'));
+    io.emit('chat message', msg);
 
   });
 });
