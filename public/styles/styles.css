@@ -2,6 +2,16 @@
   line-height: 2.5;
 }
 
+.card {
+  
+  box-shadow: 0px 0px 15px #ffffff !important;
+}
+
+.indexCard{
+  margin-top: 12px;
+}
+
+
 body {
   font-family: 'Montserrat', sans-serif;
   background: url("../images/nightsky.jpg") no-repeat;
@@ -29,4 +39,24 @@ li:nth-child(odd) {
 .description {
   color:white;
   font-size: 30px !important;
+}
+
+#messageWindow {
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.message_text {
+  font-size: 25px;
+}
+
+.message_info {
+  font-size: 12px;
+
+}
+
+.logoutButton {
+  font-size: 20px;
+  color: white;
+  text-align: right;
 }
