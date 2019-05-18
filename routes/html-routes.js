@@ -24,13 +24,13 @@ module.exports = function (app) {
 
 
             for (var i = 0; i < data.length; i++) {
-                data[i].dataValues.createdAt = moment(data[i].dataValues.createdAt).format('ddd MMMM Do YYYY, h:mm a');
+                data[i].dataValues.createdAt = moment(data[i].dataValues.createdAt).tz(moment.tz.guess()).format('ddd MMMM Do YYYY, h:mm a');
 
             }
 
             console.log(data);
             res.render("chat", { posts: data });
-            
+
         })
 
 
