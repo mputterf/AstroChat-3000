@@ -32,7 +32,8 @@
                           {{#each posts}}
 
                           <li>
-                            {{this.textInput}} <br><span class="message_info"> {{this.createdAt}} -
+                            {{this.textInput}} <br><span class="message_info"> <span
+                                class="message-time">{{this.createdAt}}</span> -
                               {{this.User.name}} </span>
                           </li>
                           {{/each}}

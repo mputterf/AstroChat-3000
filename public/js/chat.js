@@ -26,7 +26,9 @@ $(document).ready(function () {
     // socket.on("disconnect", function (newUser) {
     //     $("#onlineUsers").html(newUser);
     // })
-
+    this.$(".message-time").html(function (index, value) {
+        return moment(value).format('ddd MMMM Do YYYY, h:mm a');
+    })
 
     $('form').submit(function (e) {
         var userID = parseInt(getUrlParameter("userid"));
@@ -63,9 +65,6 @@ $(document).ready(function () {
     socket.on('chat message', function (msg) {
         $('#messageList').append($('<li>').html(msg + "<br> <span class='message_info'>" + moment().format('ddd MMMM Do YYYY, h:mm a') + " - " + userName + "</span>"));
     });
-    //     + "<br>" + moment().format('ddd MMMM Do YYYY, h:mm a')
-
-    // <br><span class="message_info"> {{this.createdAt}} - {{this.User.name}} </span>
 
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
