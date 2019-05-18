@@ -52,13 +52,29 @@ db.sequelize.sync(syncOptions).then(function () {
 });
 
 // socket.io
+var userNames = [];
+var userSocketIDs = [];
+
 // When a user connects to the server (chatroom)
 io.on('connection', function (client) {
   console.log('Client connected...');
 
+  client.on("newUser", function (userName) {
+    userNames.push(userName);
+    userSocketIDs.push(client.id);
+    io.emit("newUser", userNames.join("<br>"));
+  })
+
   // When a user disconnects
   client.on("disconnect", function () {
-    console.log("Client disconnected...")
+    var toRemove = userSocketIDs.indexOf(client.id);
+    userSocketIDs.splice(toRemove, 1);
+    userNames.splice(toRemove, 1);
+    // io.emit("newUser", userNames)
+    // userNames = [];
+    // userNames.push(userName);
+    io.emit("newUser", userNames.join("<br>"));
+    console.log("Client disconnected...");
   });
 
   // When a user sends a chat message, it will come into the server
