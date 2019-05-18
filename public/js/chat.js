@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 
     $(".message-time").html(function (index, value) {
-        return moment(value, 'ddd MMMM Do YYYY, h:mm a').tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('ddd MMMM Do YYYY, h:mm a');
+        return moment(value, 'ddd MMMM Do YYYY').tz(Intl.DateTimeFormat().resolvedOptions().timeZone).format('ddd MMMM Do YYYY');
     })
 
     $('form').submit(function (e) {
