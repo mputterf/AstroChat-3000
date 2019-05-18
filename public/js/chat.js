@@ -27,7 +27,7 @@ $(document).ready(function () {
     //     $("#onlineUsers").html(newUser);
     // })
     $(".message-time").html(function (index, value) {
-        return moment(value, 'ddd MMMM Do YYYY, h:mm a').local().format('ddd MMMM Do YYYY, h:mm a');
+        return moment(value, 'ddd MMMM Do YYYY, h:mm a').tz(moment.tz.guess()).format('ddd MMMM Do YYYY, h:mm a');
     })
 
     $('form').submit(function (e) {
