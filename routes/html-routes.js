@@ -28,8 +28,9 @@ module.exports = function (app) {
 
             }
 
-            // console.log(data)
+            console.log(data);
             res.render("chat", { posts: data });
+            
         })
 
 

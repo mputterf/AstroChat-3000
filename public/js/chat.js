@@ -15,6 +15,7 @@ $(document).ready(function () {
                 userName = data[i].name;
                 socket.emit("newUser", userName);
             }
+
         };
     });
 
@@ -25,6 +26,7 @@ $(document).ready(function () {
     // socket.on("disconnect", function (newUser) {
     //     $("#onlineUsers").html(newUser);
     // })
+
 
     $('form').submit(function (e) {
         var userID = parseInt(getUrlParameter("userid"));
@@ -47,9 +49,13 @@ $(document).ready(function () {
             console.log("Message sent to db");
         });
 
+        //Scrolls the window down when the message is entered
+        var objDiv = document.getElementById("messageWindow");
+        objDiv.scrollTop = objDiv.scrollHeight;
+
         // clear message box after we send everything
         $('#message-box').val('');
-
+        
         return false;
     });
 
@@ -57,6 +63,8 @@ $(document).ready(function () {
     socket.on('chat message', function (msg) {
         $('#messageList').append($('<li>').html(msg + "<br>" + userName));
     });
+
+
 
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -72,4 +80,35 @@ $(document).ready(function () {
             }
         }
     };
+
+
+    //Populates the Users Online area with a list of users
+    // $.get("/api/users", function (data) {
+
+    //     var userList =  document.getElementById("sidebar");
+    //     for (i = 0; i < data.length; i++) {
+           
+    //         var userListItem = document.createElement("li");
+    //         userListItem.textContent = data[i].name;
+    //         userList.appendChild(userListItem);            
+    
+    //     };
+    // });
+
 });
+
+
+//-----------------------------//
+
+
+//Scrolls the chat window to the bottom upon page load
+var objDiv = document.getElementById("messageWindow");
+objDiv.scrollTop = objDiv.scrollHeight;
+
+
+
+//Load "online" users
+// for(i = 0; i < users.length; i++){
+//     document.getElementById("onlineUsers").innerHTML = "<p>"+ users.name + "</p>";
+// }
+
