@@ -26,8 +26,8 @@ $(document).ready(function () {
     // socket.on("disconnect", function (newUser) {
     //     $("#onlineUsers").html(newUser);
     // })
-    this.$(".message-time").html(function (index, value) {
-        return moment(value).format('ddd MMMM Do YYYY, h:mm a');
+    $(".message-time").html(function (index, value) {
+        return moment(value, 'ddd MMMM Do YYYY, h:mm a').format('ddd MMMM Do YYYY, h:mm a');
     })
 
     $('form').submit(function (e) {
