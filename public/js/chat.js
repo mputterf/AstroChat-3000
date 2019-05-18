@@ -55,16 +55,17 @@ $(document).ready(function () {
 
         // clear message box after we send everything
         $('#message-box').val('');
-        
+
         return false;
     });
 
     // When we get a message from the server, append it to the chatbox
     socket.on('chat message', function (msg) {
-        $('#messageList').append($('<li>').html(msg + "<br>" + userName));
+        $('#messageList').append($('<li>').html(msg + "<br> <span class='message_info'>" + moment().format('ddd MMMM Do YYYY, h:mm a') + " - " + userName + "</span>"));
     });
+    //     + "<br>" + moment().format('ddd MMMM Do YYYY, h:mm a')
 
-
+    // <br><span class="message_info"> {{this.createdAt}} - {{this.User.name}} </span>
 
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -87,11 +88,11 @@ $(document).ready(function () {
 
     //     var userList =  document.getElementById("sidebar");
     //     for (i = 0; i < data.length; i++) {
-           
+
     //         var userListItem = document.createElement("li");
     //         userListItem.textContent = data[i].name;
     //         userList.appendChild(userListItem);            
-    
+
     //     };
     // });
 
