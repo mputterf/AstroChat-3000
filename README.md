@@ -1,8 +1,8 @@
 # AstroChat 3000
-##What is this?
+## What is this?
 AstroChat 3000 is a realtime chat where users can sign up and chat with each other. The chat is hosted on Heroku.
 
-##Can I visit it?
+## Can I visit it?
 You may do so here: https://calm-depths-14537.herokuapp.com/
 
 ##What the technology behind it?
